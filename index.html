@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Data Dash 0.1</title>
+  <link rel="stylesheet" href="css/presentation.css">
+</head>
+
+<body ng-app="dashboardApp">
+  <div ng-controller="DashboardController as dash">
+    <button ng-click="selectTab(1)">From Now</button><button ng-click="selectTab(2)">From Oct 15th</button>
+    <ul>
+      <li ng-repeat="entry in entries">
+        <b>{{entry.name}}</b> - <span ng-show="isSelected(1)"> <i>Since Page Load:</i>  <b><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span></b></span> <span ng-show="isSelected(2)"><i>Since October 15th 2013:</i>  <b><span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple) | num | truncate}} <span ng-hide="entry.before"> <span ng-hide="entry.before">{{entry.unit}}</span></b></span>
+      </li>
+    </ul>
+  </div>
+
+    
+<script src='http://codepen.io/assets/libs/fullpage/angular.js'></script>
+<script src="js/data.js"></script>
+    
+</body>
+
+</html>
