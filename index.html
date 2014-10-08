@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Data Dash 0.2</title>
+  <title>Data Dash 0.3</title>
   <link rel="stylesheet" href="css/presentation.css">
 </head>
 
@@ -12,13 +12,40 @@
     <button ng-click="selectTab(1)">From Now</button><button ng-click="selectTab(2)">From Oct 15th</button>
     <ul>
       <li ng-repeat="entry in entries">
-        <b>{{entry.name}}</b> - <span ng-show="isSelected(1)"> <i>Since Page Load:</i>  <b><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span></b></span> <span ng-show="isSelected(2)"><i>Since October 15th 2013:</i>  <b><span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple) | num | truncate}} <span ng-hide="entry.before"> <span ng-hide="entry.before">{{entry.unit}}</span></b></span>
+      	<!--
+        <b>{{entry.name}}</b> - 
+        
+        
+        <span ng-show="isSelected(1)"> <i>Since Page Load:</i>  <span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span> </span> 
+        
+        
+        
+        <span ng-show="isSelected(2)"><i>Since October 15th 2013:</i>  <b><span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple) | num | truncate}} <span ng-hide="entry.before"> <span ng-hide="entry.before">{{entry.unit}}</span></b></span> -->
+
+	     <span ng-show="isSelected(1)"> <i>Since Page Load:</i>  
+	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span>
+	     	<span>{{entry.text}}</span>
+	     	<span>{{entry.citation}}</span><!-- could do with adding "Source: {{entry.citation}}" and URL. Will need to only run this conditionally -->
+	     	<span>{{entry.nestedlink}}</span>
+	     	<span>{{(total * entry.nestedmultiple)| num | truncate}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
+	     	<span>{{entry.nestedtext}}</span>
+	     </span> 
+
+	     <span ng-show="isSelected(2)"><i>Since October 15th 2013:</i><!-- repeat all changes from above into this -->
+	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span>
+	     	<span>{{entry.text}}</span>
+	     	<span>{{entry.citation}}</span>
+	     	<span>{{entry.nestedlink}}</span>
+	     	<span>{{(total * entry.nestedmultiple)| num | truncate}}</span>
+	     	<span>{{entry.nestedtext}}</span>
+	     </span>
+        
       </li>
     </ul>
   </div>
 
     
-<script src='http://codepen.io/assets/libs/fullpage/angular.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
 <script src="js/data.js"></script>
     
 </body>

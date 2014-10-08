@@ -8,16 +8,36 @@
     
     $scope.entries = [
       {
-        name: 'MEN Arena',
-        multiple: 0.6,
+        name: 'Water',
+        multiple: 2546,
+        unit: 'litres',
+        text: 'of water delivered to Manchester by the Thirlmere aqueduct from a reservoir near Keswick in the Lake District.',
+        citation: 'United Utilities',
+        before: false
+      },
+      {
+        name: 'football wages',
+        multiple: 4421,
         unit: '£',
+        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m',
         before: true
       },
       {
-        name: 'Old Trafford',
-        multiple: 0.9,
-        unit: 'people',
+	    name: 'rolls',
+        multiple: 0.07,
+        unit: 'bread rolls',
+        text: 'served at Roy\'s Rolls in Coronation Street',
         before: false
+      },
+      {
+      	name: 'metrolink',
+        multiple: 53,
+        unit: 'passengers',
+        text: 'board the Manchester Metrolink',
+        before: false,
+        nestedlink: 'of these',
+        nestedmultiple: 1.325,
+        nestedtext: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)'
       }
     ];
     
