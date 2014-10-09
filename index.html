@@ -20,9 +20,8 @@
 	     <div ng-show="isSelected(1)"> 
 	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	{{entry.text}}</h3>
-	     	<p>
 	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
-	     	
+	     	<p>
 	     	<span ng-show="entry.childMultiple != ''">
 	     	<span>{{entry.joiningPhrase}}</span>
 	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
