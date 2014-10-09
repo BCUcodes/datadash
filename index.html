@@ -9,13 +9,13 @@
 </head>
 
 <body ng-app="dashboardApp">
-	<h1>MEN Data Yo</h1>
+	<h1>Manchester In Realtime</h1>
   <div ng-controller="DashboardController as dash">
     <button ng-click="selectTab(1)">From Now</button><button ng-click="selectTab(2)">From Oct 15th</button>
     <ul>
       <li ng-repeat="entry in entries" id="{{entry.name | slug}}">
 			
-	     <span ng-show="isSelected(1)"> <i>Since Page Load:</i>  
+	     <div ng-show="isSelected(1)"> <i>Since Page Load:</i>  
 	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	<span>{{entry.text}}</span>
 	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
@@ -30,8 +30,8 @@
 	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
 	     	</span>
 	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
-	     </span>
-	     <span ng-show="isSelected(2)"><i>Since October 15th 2014:</i><!-- repeat all changes from above into this -->
+	     </div>
+	     <div ng-show="isSelected(2)"><i>Since October 15th 2014:</i><!-- repeat all changes from above into this -->
 	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	<span>{{entry.text}}</span>
 	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
@@ -45,9 +45,11 @@
 	     	<span>{{entry.childText}}</span>
 	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
 	     	</span>
-	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
-	     </span>
-        
+	     	Permalink: <a class="fancy" id="{{entry.name | slug}}"href="#{{entry.name | slug}}_box">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     </div>
+         <div style="display:none"><div id="{{entry.name | slug}}_box">	
+         	CONTENT
+         </div></div>
       </li>
     </ul>
   </div>
