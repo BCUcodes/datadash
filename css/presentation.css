@@ -50,3 +50,18 @@ margin-bottom: 18px;
 
 a { color: #e90e0e; text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+ul {margin: 0px; padding: 0px;}
+li {display: block; margin-bottom: 15px; padding: 15px; list-style: none;}
+
+ul li:nth-child(3n+1) {background-color: #A8000E; color: white;}
+ul li:nth-child(3n+1) a {color: #141414;}
+ul li:nth-child(3n+1) a:hover {color: white;}
+
+ul li:nth-child(3n+2) {background-color: #141414; color: white;}
+ul li:nth-child(3n+2) a {color: #A8000E;}
+ul li:nth-child(3n+2) a:hover {color: white;}
+
+ul li:nth-child(3n+3) {background-color: white; color: #141414; border: 1px solid black;}
+ul li:nth-child(3n+3) a {color: #A8000E;}
+ul li:nth-child(3n+3) a:hover {color: #141414;}
