@@ -31,13 +31,21 @@
 	     	</span>
 	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
 	     </span>
-	     <span ng-show="isSelected(2)"><i>Since October 15th 2013:</i><!-- repeat all changes from above into this -->
-	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}} <span ng-hide="entry.before">{{entry.unit}}</span>
+	     <span ng-show="isSelected(2)"><i>Since October 15th 2014:</i><!-- repeat all changes from above into this -->
+	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	<span>{{entry.text}}</span>
-	     	<span>{{entry.citation}}</span>
-	     	<span>{{entry.nestedlink}}</span>
-	     	<span>{{(secondTotal * entry.nestedmultiple)| num | truncate}}</span>
-	     	<span>{{entry.nestedtext}}</span>
+	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
+	     	<span><a href="{{entry.citationUrl}}">{{entry.citationText}}</a></span>	     	
+	     	
+	     	<span ng-show="entry.childMultiple != ''">
+	     	<span>{{entry.joiningPhrase}}</span>
+	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
+	     	{{(total * entry.childMultiple)| num | truncate}}
+	     	<span ng-hide="entry.childUnitBefore">{{entry.childUnit}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
+	     	<span>{{entry.childText}}</span>
+	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
+	     	</span>
+	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
 	     </span>
         
       </li>
