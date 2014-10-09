@@ -20,9 +20,8 @@
 	     <div ng-show="isSelected(1)"> 
 	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	{{entry.text}}</h3>
-	     	<p>
 	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
-	     	
+	     	<p>
 	     	<span ng-show="entry.childMultiple != ''">
 	     	<span>{{entry.joiningPhrase}}</span>
 	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
@@ -39,22 +38,24 @@
 	     </p>
 	     </div>
 	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
-	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
-	     	<span>{{entry.text}}</span>
-	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
-	     	<span><a href="{{entry.citationUrl}}">{{entry.citationText}}</a></span>	     	
-	     	
+	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
+	     	{{entry.text}}</h3>
+	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
+	     	<p>
 	     	<span ng-show="entry.childMultiple != ''">
 	     	<span>{{entry.joiningPhrase}}</span>
 	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
 	     	{{(total * entry.childMultiple)| num | truncate}}
 	     	<span ng-hide="entry.childUnitBefore">{{entry.childUnit}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
 	     	<span>{{entry.childText}}</span>
-	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
 	     	</span>
-	     	<p>
-	     	Permalink: <a class="fancy" id="{{entry.name | slug}}"href="#{{entry.name | slug}}_box">http://data.men.co.uk/#{{entry.name | slug}}</a>
 	     	</p>
+	     	<cite>
+	     	<a href="{{entry.citationUrl}}">{{entry.citationText}}</a> <span ng-show="entry.childMultiple != ''">| <a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>   	
+	     	</cite>
+	     	<p>
+	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     </p>
 	     </div>
          <div style="display:none"><div id="{{entry.name | slug}}_box">	
          	CONTENT
