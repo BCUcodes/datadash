@@ -10,16 +10,18 @@
 
 <body ng-app="dashboardApp">
 	<h1>Manchester In Realtime</h1>
+
   <div ng-controller="DashboardController as dash">
-    <button ng-click="selectTab(1)">From Now</button><button ng-click="selectTab(2)">From Oct 15th</button>
+  	<h2>A Snapshot of Activity in Manchester since you <span ng-show="isSelected(1)">loaded this page</span><span ng-show="isSelected(2)">October 15th 2014</span></h2>
+    <button ng-show="isSelected(2)" ng-click="selectTab(1)">Show Activity Since Page Loaded</button><button ng-show="isSelected(1)" ng-click="selectTab(2)">Show Activity Since October 15th 2014</button>
     <ul>
-      <li ng-repeat="entry in entries" id="{{entry.name | slug}}">
+      <li ng-repeat="entry in entries" id="{{entry.name | slug}}" ng-class="{true: 'large', false: 'small'}[entry.multiple >= 1000]">
 			
-	     <div ng-show="isSelected(1)"> <i>Since Page Load:</i>  
-	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
-	     	<span>{{entry.text}}</span>
-	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
-	     	<span><a href="{{entry.citationUrl}}">{{entry.citationText}}</a></span>	     	
+	     <div ng-show="isSelected(1)"> 
+	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
+	     	{{entry.text}}</h3>
+	     	<p>
+	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
 	     	
 	     	<span ng-show="entry.childMultiple != ''">
 	     	<span>{{entry.joiningPhrase}}</span>
@@ -27,11 +29,16 @@
 	     	{{(total * entry.childMultiple)| num | truncate}}
 	     	<span ng-hide="entry.childUnitBefore">{{entry.childUnit}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
 	     	<span>{{entry.childText}}</span>
-	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
 	     	</span>
+	     	</p>
+	     	<cite>
+	     	<a href="{{entry.citationUrl}}">{{entry.citationText}}</a> <span ng-show="entry.childMultiple != ''">| <a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>   	
+	     	</cite>
+	     	<p>
 	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     </p>
 	     </div>
-	     <div ng-show="isSelected(2)"><i>Since October 15th 2014:</i><!-- repeat all changes from above into this -->
+	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
 	     	<span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
 	     	<span>{{entry.text}}</span>
 	     	<span ng-show="entry.image != ''"><img src='images/{{entry.image}}' alt='{{entry.imageAlt}}' /></span>
@@ -45,7 +52,9 @@
 	     	<span>{{entry.childText}}</span>
 	     	<span><a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>
 	     	</span>
+	     	<p>
 	     	Permalink: <a class="fancy" id="{{entry.name | slug}}"href="#{{entry.name | slug}}_box">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     	</p>
 	     </div>
          <div style="display:none"><div id="{{entry.name | slug}}_box">	
          	CONTENT
