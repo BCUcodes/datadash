@@ -11,33 +11,44 @@
         name: 'Water',
         multiple: 2546,
         unit: 'litres',
+        before: false,
         text: 'of water delivered to Manchester by the Thirlmere aqueduct from a reservoir near Keswick in the Lake District.',
-        citation: 'United Utilities',
-        before: false
+        image: 'aqueduct.jpg',
+        imageAlt: 'Thirlmere aqueduct',
+        citationText: 'United Utilities',
+        citationUrl: 'http://www.unitedutilities.com/default.aspx'
       },
       {
         name: 'football wages',
         multiple: 4421,
         unit: '£',
-        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m',
-        before: true
+        before: true,
+        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m'
       },
       {
 	    name: 'rolls',
         multiple: 0.07,
         unit: 'bread rolls',
-        text: 'served at Roy\'s Rolls in Coronation Street',
-        before: false
+        before: false,
+        text: 'served at Roy\'s Rolls in Coronation Street'
       },
       {
-      	name: 'metrolink',
+	    name: 'metrolink',
         multiple: 53,
         unit: 'passengers',
-        text: 'board the Manchester Metrolink',
         before: false,
-        nestedlink: 'of these',
-        nestedmultiple: 1.325,
-        nestedtext: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)'
+        text: 'board the Manchester Metrolink',
+        image: 'aqueduct.jpg',
+        imageAlt: 'Thirlmere aqueduct',
+        citationText: 'some source',
+        citationUrl: 'http://www.unitedutilities.com/default.aspx',
+        joiningPhrase: 'of these',
+        childMultiple: 1.325,
+        childUnit: 'passengers',
+        childUnitBefore: false,
+        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+        childCitationText: 'Some source',
+        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
       }
     ];
     
