@@ -16,21 +16,50 @@
         image: 'aqueduct.jpg',
         imageAlt: 'Thirlmere aqueduct',
         citationText: 'United Utilities',
-        citationUrl: 'http://www.unitedutilities.com/default.aspx'
+        citationUrl: 'http://www.unitedutilities.com/default.aspx',
+        joiningPhrase: 'of these',
+        childMultiple: '',
+        childUnit: 'passengers',
+        childUnitBefore: false,
+        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+        childCitationText: 'Some source',
+        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
       },
       {
         name: 'football wages',
         multiple: 4421,
         unit: '£',
         before: true,
-        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m'
+        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m',
+        image: 'aqueduct.jpg',
+        imageAlt: 'Thirlmere aqueduct',
+        citationText: 'United Utilities',
+        citationUrl: 'http://www.unitedutilities.com/default.aspx',
+        joiningPhrase: 'of these',
+        childMultiple: '',
+        childUnit: 'passengers',
+        childUnitBefore: false,
+        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+        childCitationText: 'Some source',
+        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
       },
       {
 	    name: 'rolls',
         multiple: 0.07,
         unit: 'bread rolls',
         before: false,
-        text: 'served at Roy\'s Rolls in Coronation Street'
+        text: 'served at Roy\'s Rolls in Coronation Street',
+        image: 'aqueduct.jpg',
+        imageAlt: 'Thirlmere aqueduct',
+        citationText: 'United Utilities',
+        citationUrl: 'http://www.unitedutilities.com/default.aspx',
+        joiningPhrase: 'of these',
+        childMultiple: '',
+        childUnit: 'passengers',
+        childUnitBefore: false,
+        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+        childCitationText: 'Some source',
+        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
       },
       {
 	    name: 'metrolink',
@@ -55,7 +84,7 @@
     // Interval Function
 
     var now = new Date();
-    var then = new Date('October 15, 2013 00:00:00');
+    var then = new Date('October 15, 2014 00:00:00');
     $scope.total = 1;
     $scope.secondTotal = (now - then)/1000; 
     setInterval( function() {
@@ -115,5 +144,9 @@ angular.module('filters', []).
     }).filter('num', function() {
     return function(input) {
       return parseFloat(input).toFixed(2);
+    };
+}).filter('slug', function() {
+    return function(text) {
+      return text.toLowerCase().split(' ').join('-');
     };
 });
