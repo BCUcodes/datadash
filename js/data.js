@@ -1,85 +1,96 @@
 (function(){
   var app = angular.module('dashboardApp',['filters']);
   
-  app.controller('DashboardController', [ '$scope','$http', function($scope, $defer, $http){
+  app.controller('DashboardController', [ '$scope','$http', function($scope, $http, $defer){
     var dash = this;
     
     // Data
+
+    $scope.entries = {};
+    $http.get('https://spreadsheets.google.com/feeds/list/1PqxG0vL2enMG5ZXNByyGB--QkWgoNiS3FYmqBbGEiYs/1/public/values?alt=json').success(function(data){
+      $scope.entries = data.feed.entry;
+      console.log($scope.entries);
+      setTimeout(function(){ 
+        if ( window.location.hash ) {
+        $(window.location.hash).click();
+        }
+      },100);
+    });
     
-    $scope.entries = [
-      {
-        name: 'Water',
-        multiple: 2546,
-        unit: 'litres',
-        before: false,
-        text: 'of water delivered to Manchester by the Thirlmere aqueduct from a reservoir near Keswick in the Lake District.',
-        image: 'aqueduct.jpg',
-        imageAlt: 'Thirlmere aqueduct',
-        citationText: 'United Utilities',
-        citationUrl: 'http://www.unitedutilities.com/default.aspx',
-        joiningPhrase: 'of these',
-        childMultiple: '',
-        childUnit: 'passengers',
-        childUnitBefore: false,
-        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
-        childCitationText: 'Some source',
-        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
-      },
-      {
-        name: 'football wages',
-        multiple: 4421,
-        unit: '£',
-        before: true,
-        text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m',
-        image: 'aqueduct.jpg',
-        imageAlt: 'Thirlmere aqueduct',
-        citationText: 'United Utilities',
-        citationUrl: 'http://www.unitedutilities.com/default.aspx',
-        joiningPhrase: 'of these',
-        childMultiple: '',
-        childUnit: 'passengers',
-        childUnitBefore: false,
-        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
-        childCitationText: 'Some source',
-        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
-      },
-      {
-	    name: 'rolls',
-        multiple: 0.07,
-        unit: 'bread rolls',
-        before: false,
-        text: 'served at Roy\'s Rolls in Coronation Street',
-        image: 'aqueduct.jpg',
-        imageAlt: 'Thirlmere aqueduct',
-        citationText: 'United Utilities',
-        citationUrl: 'http://www.unitedutilities.com/default.aspx',
-        joiningPhrase: 'of these',
-        childMultiple: '',
-        childUnit: 'passengers',
-        childUnitBefore: false,
-        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
-        childCitationText: 'Some source',
-        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
-      },
-      {
-	    name: 'metrolink',
-        multiple: 53,
-        unit: 'passengers',
-        before: false,
-        text: 'board the Manchester Metrolink',
-        image: 'aqueduct.jpg',
-        imageAlt: 'Thirlmere aqueduct',
-        citationText: 'some source',
-        citationUrl: 'http://www.unitedutilities.com/default.aspx',
-        joiningPhrase: 'of these',
-        childMultiple: 1.325,
-        childUnit: 'passengers',
-        childUnitBefore: false,
-        childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
-        childCitationText: 'Some source',
-        childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
-      }
-    ];
+    // $scope.entries = [
+    //   {
+    //     name: 'Water',
+    //     multiple: 2546,
+    //     unit: 'litres',
+    //     before: false,
+    //     text: 'of water delivered to Manchester by the Thirlmere aqueduct from a reservoir near Keswick in the Lake District.',
+    //     image: 'aqueduct.jpg',
+    //     imageAlt: 'Thirlmere aqueduct',
+    //     citationText: 'United Utilities',
+    //     citationUrl: 'http://www.unitedutilities.com/default.aspx',
+    //     joiningPhrase: 'of these',
+    //     childMultiple: '',
+    //     childUnit: 'passengers',
+    //     childUnitBefore: false,
+    //     childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+    //     childCitationText: 'Some source',
+    //     childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
+    //   },
+    //   {
+    //     name: 'football wages',
+    //     multiple: 4421,
+    //     unit: '£',
+    //     before: true,
+    //     text: 'paid to players at Manchester City and United with a combined estimated annual wage bill of £382m',
+    //     image: 'aqueduct.jpg',
+    //     imageAlt: 'Thirlmere aqueduct',
+    //     citationText: 'United Utilities',
+    //     citationUrl: 'http://www.unitedutilities.com/default.aspx',
+    //     joiningPhrase: 'of these',
+    //     childMultiple: '',
+    //     childUnit: 'passengers',
+    //     childUnitBefore: false,
+    //     childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+    //     childCitationText: 'Some source',
+    //     childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
+    //   },
+    //   {
+	   //  name: 'rolls',
+    //     multiple: 0.07,
+    //     unit: 'bread rolls',
+    //     before: false,
+    //     text: 'served at Roy\'s Rolls in Coronation Street',
+    //     image: 'aqueduct.jpg',
+    //     imageAlt: 'Thirlmere aqueduct',
+    //     citationText: 'United Utilities',
+    //     citationUrl: 'http://www.unitedutilities.com/default.aspx',
+    //     joiningPhrase: 'of these',
+    //     childMultiple: '',
+    //     childUnit: 'passengers',
+    //     childUnitBefore: false,
+    //     childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+    //     childCitationText: 'Some source',
+    //     childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
+    //   },
+    //   {
+	   //  name: 'metrolink',
+    //     multiple: 53,
+    //     unit: 'passengers',
+    //     before: false,
+    //     text: 'board the Manchester Metrolink',
+    //     image: 'aqueduct.jpg',
+    //     imageAlt: 'Thirlmere aqueduct',
+    //     citationText: 'some source',
+    //     citationUrl: 'http://www.unitedutilities.com/default.aspx',
+    //     joiningPhrase: 'of these',
+    //     childMultiple: 1.325,
+    //     childUnit: 'passengers',
+    //     childUnitBefore: false,
+    //     childText: 'didn\'t get a ticket (based on finding that 1 in 40 passengers are fare dodgers)',
+    //     childCitationText: 'Some source',
+    //     childCitationUrl: 'http://www.unitedutilities.com/default.aspx'
+    //   }
+    // ];
     
     // Interval Function
 
@@ -149,4 +160,8 @@ angular.module('filters', []).
     return function(text) {
       return text.toLowerCase().split(' ').join('-');
     };
+});
+
+$("a.fancy").fancybox({
+  'padding': 50,    
 });

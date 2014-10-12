@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Data Dash 0.3</title>
+  <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css'>
+
   <link rel="stylesheet" href="css/presentation.css">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 </head>
@@ -15,57 +17,81 @@
   	<h2>A Snapshot of Activity in Manchester since you <span ng-show="isSelected(1)">loaded this page</span><span ng-show="isSelected(2)">October 15th 2014</span></h2>
     <button ng-show="isSelected(2)" ng-click="selectTab(1)">Show Activity Since Page Loaded</button><button ng-show="isSelected(1)" ng-click="selectTab(2)">Show Activity Since October 15th 2014</button>
     <ul>
-      <li ng-repeat="entry in entries" id="{{entry.name | slug}}" ng-class="{true: 'large', false: 'small'}[entry.multiple >= 1000]">
+      <li ng-repeat="entry in entries" ng-class="{true: 'large', false: 'small'}[entry.multiple >= 1000]">
 			
 	     <div ng-show="isSelected(1)"> 
-	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(total * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
-	     	{{entry.text}}</h3>
-	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
+	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
+	        {{entry.gsx$text.$t}}</h3>
+	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
-	     	<span ng-show="entry.childMultiple != ''">
-	     	<span>{{entry.joiningPhrase}}</span>
-	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
-	     	{{(total * entry.childMultiple)| num | truncate}}
-	     	<span ng-hide="entry.childUnitBefore">{{entry.childUnit}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
-	     	<span>{{entry.childText}}</span>
+	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
+	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
+	     	<span ng-show="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span>
+	     	{{(total * entry.gsx$childmultiple.$t)| num | truncate}}
+	     	<span ng-hide="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
+	     	<span>{{entry.gsx$childtext.$t}}</span>
 	     	</span>
 	     	</p>
 	     	<cite>
-	     	<a href="{{entry.citationUrl}}">{{entry.citationText}}</a> <span ng-show="entry.childMultiple != ''">| <a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>   	
+	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
 	     	<p>
-	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     	Permalink: <a id="{{entry.gsx$name.$t | slug}}" class="fancy" href="#{{entry.gsx$name.$t | slug}}_box">http://data.men.co.uk#{{entry.gsx$name.$t | slug}}</a>
 	     </p>
-	     </div>
-	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
-	     	<h3><span ng-show="entry.before">{{entry.unit}}</span>{{(secondTotal * entry.multiple)| num | truncate}}<span ng-hide="entry.before">{{entry.unit}}</span>
-	     	{{entry.text}}</h3>
-	     	<img ng-show="entry.image != ''" src='images/{{entry.image}}' alt='{{entry.imageAlt}}' />
+	     
+         <div style="display:none"><div id="{{entry.gsx$name.$t | slug}}_box">	
+         	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
+	        {{entry.gsx$text.$t}}</h3>
+	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
-	     	<span ng-show="entry.childMultiple != ''">
-	     	<span>{{entry.joiningPhrase}}</span>
-	     	<span ng-show="entry.childUnitBefore">{{entry.childUnit}}</span>
-	     	{{(total * entry.childMultiple)| num | truncate}}
-	     	<span ng-hide="entry.childUnitBefore">{{entry.childUnit}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
-	     	<span>{{entry.childText}}</span>
+	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
+	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
+	     	<span ng-show="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span>
+	     	{{(total * entry.gsx$childmultiple.$t)| num | truncate}}
+	     	<span ng-hide="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
+	     	<span>{{entry.gsx$childtext.$t}}</span>
 	     	</span>
 	     	</p>
 	     	<cite>
-	     	<a href="{{entry.citationUrl}}">{{entry.citationText}}</a> <span ng-show="entry.childMultiple != ''">| <a href="{{entry.childCitationUrl}}">{{entry.childCitationText}}</a></span>   	
+	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
 	     	<p>
-	     	Permalink: <a href="#{{entry.name | slug}}">http://data.men.co.uk/#{{entry.name | slug}}</a>
+	     	Permalink: http://data.men.co.uk#{{entry.gsx$name.$t | slug}}
 	     </p>
-	     </div>
-         <div style="display:none"><div id="{{entry.name | slug}}_box">	
-         	CONTENT
          </div></div>
+         </div>
+	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
+	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(secondTotal * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
+	     	{{entry.gsx$text.$t}}</h3>
+	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<p>
+	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
+	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
+	     	<span ng-show="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span>
+	     	{{(secondTotal * entry.gsx$childmultiple.$t)| num | truncate}}
+	     	<span ng-hide="entry.gsx$childunitbefore.$t != 'FALSE'">{{entry.gsx$childunit.$t}}</span><!-- need to run some filter on this as the maths is running and returning NaN -->
+	     	<span>{{entry.gsx$childtext.$t}}</span>
+	     	</span>
+	     	</p>
+	     	<cite>
+	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
+	     	</cite>
+	     	<p>
+	     	Permalink: http://data.men.co.uk#{{entry.gsx$name.$t | slug}}
+	     </p>
+	     
+         
+     	</div>
       </li>
     </ul>
   </div>
 
+
     
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js'></script>
+
 <script src="js/data.js"></script>
     
 </body>
