@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <title>Data Dash 0.3</title>
   <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css'>
-
   <link rel="stylesheet" href="css/presentation.css">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body ng-app="dashboardApp">
@@ -17,7 +17,7 @@
   	<h2>A Snapshot of Activity in Manchester since you <span ng-show="isSelected(1)">loaded this page</span><span ng-show="isSelected(2)">October 15th 2014</span></h2>
     <button ng-show="isSelected(2)" ng-click="selectTab(1)">Show Activity Since Page Loaded</button><button ng-show="isSelected(1)" ng-click="selectTab(2)">Show Activity Since October 15th 2014</button>
     <ul>
-      <li ng-repeat="entry in entries" ng-class="{true: 'large', false: 'small'}[entry.multiple >= 1000]">
+      <li ng-repeat="entry in entries" ng-class="{true: 'large', false: 'small'}[entry.gsx$multiple.$t >= 1000]">
 			
 	     <div ng-show="isSelected(1)"> 
 	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
@@ -35,7 +35,7 @@
 	     	<cite>
 	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
-	     	<p>
+	     	<p class="permalink">
 	     	Permalink: <a id="{{entry.gsx$name.$t | slug}}" class="fancy" href="#{{entry.gsx$name.$t | slug}}_box">http://data.men.co.uk#{{entry.gsx$name.$t | slug}}</a>
 	     </p>
 	     
@@ -93,7 +93,16 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js'></script>
 
 <script src="js/data.js"></script>
-    
+<!--
+<script src="js/masonry.pkgd.min.js"></script>
+  <script>
+var container = document.querySelector('ul');
+var msnry = new Masonry( container, {
+  // options
+  columnWidth: 100,
+  itemSelector: 'li'
+});
+</script>-->
 </body>
 
 </html>
