@@ -14,6 +14,13 @@
         if ( window.location.hash ) {
         $(window.location.hash).click();
         }
+
+        var container = document.querySelector('.items');
+        var msnry = new Masonry( container, {
+          itemSelector: '.item',
+          columnWidth: 192
+        });
+
       },100);
     });
     
