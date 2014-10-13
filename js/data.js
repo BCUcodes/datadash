@@ -21,7 +21,7 @@
           columnWidth: 192
         });
 
-      },100);
+      },500);
     });
     
     // $scope.entries = [
