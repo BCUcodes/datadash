@@ -18,7 +18,7 @@ p {overflow: auto;}
 
   
 @media only screen and (min-width : 768px) {
-li {width: 172px; margin: 10px; float: left; clear: none; outline: #A8000E solid 2px;}
+li {width: 172px; min-height:300px; margin: 10px; float: left; clear: none; outline: #A8000E solid 2px;}
 ul li h3 {margin-top: 0px;}
 li.large {width: 556px;}
 }
