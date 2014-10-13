@@ -22,7 +22,7 @@
 	     <div ng-show="isSelected(1)"> 
 	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	        {{entry.gsx$text.$t}}</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
@@ -44,7 +44,7 @@
 	        {{entry.gsx$text.$t}}</h3>
 	        <h3>That's <span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(secondTotal * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	     	Since October 15th</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
@@ -65,7 +65,7 @@
 	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
 	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(secondTotal * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	     	{{entry.gsx$text.$t}}</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
