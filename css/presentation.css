@@ -1,4 +1,31 @@
-body {font-family: 'PT Sans', Helvetica, Arial, sans-serif; padding: 0px; margin: 0px; font-size: 18px;}
+body {font-family: 'PT Sans', Helvetica, Arial, sans-serif; padding: 0px; margin: 0px; }
+
+h1, h2 {padding: 0px 15px;}
+button {margin-left: 15px;}
+a, a:link, a:active, a:visited {color: #A8000E; text-decoration: none; }
+a:hover {color: #A8000E; text-decoration: underline; }
+
+ul {margin: 0px; padding: 0px;}
+li {display: block; margin-bottom: 15px; list-style: none; clear: left;}
+
+ul li img {display: block; width: 100%;}
+ul li h3 {display: block; padding: 15px; background-color: #A8000E; color: white; margin-bottom: 0px;}
+
+cite {padding-left: 15px;}
+p {padding-left: 15px;}
+p {overflow: auto;}
+.permalink {font-size: 0.75em; word-wrap: break-word;}
+
+  
+@media only screen and (min-width : 768px) {
+li {width: 172px; margin: 10px; float: left; clear: none; outline: #A8000E solid 2px;}
+ul li h3 {margin-top: 0px;}
+li.large {width: 556px;}
+}
+
+
+
+
 
 /* h1 {
 font-family: 'PT Sans Narrow', Helvetica, Arial, sans-serif;
@@ -41,19 +68,6 @@ line-height: 30px;
 margin-bottom: 18px;
 } */
 
-h1, h2 {padding: 0px 15px;}
-button {margin-left: 15px;}
-a {color: #e90e0e; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-ul {margin: 0px; padding: 0px;}
-li {display: block; margin-bottom: 15px; list-style: none; clear: left;}
-
-ul li img {display: block; width: 100%;}
-ul li h3 {display: block; padding: 15px; background-color: #A8000E; color: white; margin-bottom: 0px;}
-
-cite {padding-left: 15px;}
-p {padding-left: 15px;}
 /*ul li:nth-child(3n+1) {background-color: #A8000E; color: white;}
 ul li:nth-child(3n+1) a {color: #141414;}
 ul li:nth-child(3n+1) a:hover {color: white;}
@@ -65,9 +79,3 @@ ul li:nth-child(3n+2) a:hover {color: white;}
 ul li:nth-child(3n+3) {background-color: white; color: #141414; border: 1px solid black;}
 ul li:nth-child(3n+3) a {color: #A8000E;}
 ul li:nth-child(3n+3) a:hover {color: #141414;}*/
-
-p {overflow: auto;}
-
-/* .stat:nth-of-type(16n+1) {
-  background-color: #de4c3f !important; } */
-
