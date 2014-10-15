@@ -16,13 +16,13 @@
   <div ng-controller="DashboardController as dash">
   	<h2>A Snapshot of Activity in Manchester since you <span ng-show="isSelected(1)">loaded this page</span><span ng-show="isSelected(2)">October 15th 2014</span></h2>
     <button ng-show="isSelected(2)" ng-click="selectTab(1)">Show Activity Since Page Loaded</button><button ng-show="isSelected(1)" ng-click="selectTab(2)">Show Activity Since October 15th 2014</button>
-    <ul>
-      <li ng-repeat="entry in entries" ng-class="{true: 'large', false: 'small'}[entry.gsx$multiple.$t >= 1000]">
+    <ul class="items">
+      <li ng-repeat="entry in entries" ng-class="{true: 'large', false: 'small'}[entry.gsx$multiple.$t >= 1000]" class="item">
 			
 	     <div ng-show="isSelected(1)"> 
 	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	        {{entry.gsx$text.$t}}</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
@@ -32,7 +32,7 @@
 	     	<span>{{entry.gsx$childtext.$t}}</span>
 	     	</span>
 	     	</p>
-	     	<cite>
+	     	<cite ng-show="entry.gsx$citationurl.$t != ''">
 	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
 	     	<p class="permalink">
@@ -42,7 +42,9 @@
          <div style="display:none"><div id="{{entry.gsx$name.$t | slug}}_box">	
          	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(total * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	        {{entry.gsx$text.$t}}</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	        <h3>That's <span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(secondTotal * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
+	     	Since October 15th</h3>
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
@@ -52,7 +54,7 @@
 	     	<span>{{entry.gsx$childtext.$t}}</span>
 	     	</span>
 	     	</p>
-	     	<cite>
+	     	<cite ng-show="entry.gsx$citationurl.$t != ''">
 	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
 	     	<p>
@@ -63,7 +65,7 @@
 	     <div ng-show="isSelected(2)"><!-- repeat all changes from above into this -->
 	     	<h3><span ng-show="entry.gsx$before.$t != 'FALSE'">{{entry.gsx$unit.$t}}</span>{{(secondTotal * entry.gsx$multiple.$t)| num | truncate}}<span ng-hide="entry.gsx$before.$t != 'FALSE'"> {{entry.gsx$unit.$t}}</span>
 	     	{{entry.gsx$text.$t}}</h3>
-	     	<img ng-show="entry.gsx$image.$t != ''" src='images/{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
+	     	<img ng-show="entry.gsx$image.$t != ''" src='{{entry.gsx$image.$t}}' alt='{{entry.gsx$imagealt.$t}}' />
 	     	<p>
 	     	<span ng-show="entry.gsx$childmultiple.$t != ''">
 	     	<span>{{entry.gsx$joiningphrase.$t}}</span>
@@ -73,7 +75,7 @@
 	     	<span>{{entry.gsx$childtext.$t}}</span>
 	     	</span>
 	     	</p>
-	     	<cite>
+	     	<cite ng-show="entry.gsx$citationurl.$t != ''">
 	     	<a href="{{entry.gsx$citationurl.$t}}">{{entry.gsx$citationtext.$t}}</a> <span ng-show="entry.gsx$childmultiple.$t != ''">| <a href="{{entry.gsx$childcitationurl.$t}}">{{entry.gsx$childcitationtext.$t}}</a></span>   	
 	     	</cite>
 	     	<p>
@@ -92,17 +94,10 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js'></script>
 
-<script src="js/data.js"></script>
-<!--
+
+
 <script src="js/masonry.pkgd.min.js"></script>
-  <script>
-var container = document.querySelector('ul');
-var msnry = new Masonry( container, {
-  // options
-  columnWidth: 100,
-  itemSelector: 'li'
-});
-</script>-->
+<script src="js/data.js"></script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ a, a:link, a:active, a:visited {color: #A8000E; text-decoration: none; }
 a:hover {color: #A8000E; text-decoration: underline; }
 
 ul {margin: 0px; padding: 0px;}
-li {display: block; margin-bottom: 15px; list-style: none; clear: left;}
+li {display: block; margin-bottom: 15px; list-style: none; clear: left; width:100%;}
 
 ul li img {display: block; width: 100%;}
 ul li h3 {display: block; padding: 15px; background-color: #A8000E; color: white; margin-bottom: 0px;}
